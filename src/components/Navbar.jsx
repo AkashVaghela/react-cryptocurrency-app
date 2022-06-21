@@ -1,55 +1,37 @@
-import React from 'react';
-import { Menu, Avatar, Typography } from 'antd';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Button, Menu, Typography, Avatar } from 'antd';
+import { Link } from 'react-router-dom';
 import {
   HomeOutlined,
   MoneyCollectOutlined,
   BulbOutlined,
   FundOutlined,
+  MenuOutlined,
 } from '@ant-design/icons';
 
 import icon from '../images/cryptocurrency.png';
 
 const Navbar = () => {
-  const history = useHistory();
+  const [activeMenu, setActiveMenu] = useState(true);
+  const [screenSize, setScreenSize] = useState(undefined);
 
-  const arr = [
-    {
-      label: 'Home',
-      key: 'home',
-      icon: <HomeOutlined />,
-      path: '/',
-    },
-    {
-      label: 'Cryptocurrencies',
-      key: 'cryptocurrencies',
-      icon: <FundOutlined />,
-      path: '/cryptocurrencies',
-    },
-    {
-      label: 'Exchanges',
-      key: 'exchanges',
-      icon: <MoneyCollectOutlined />,
-      path: '/exchanges',
-    },
-    {
-      label: 'News',
-      key: 'news',
-      icon: <BulbOutlined />,
-      path: '/news',
-    },
-  ];
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
 
-  const items = arr.map((item) => ({
-    key: item.key,
-    icon: item.icon,
-    label: item.label,
-  }));
+    window.addEventListener('resize', handleResize);
 
-  const handleRouteChange = (e) => {
-    const [path] = arr.filter((item) => item.key === e.key);
-    history.push(path.path);
-  };
+    handleResize();
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (screenSize <= 800) {
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenSize]);
 
   return (
     <div className='nav-container'>
@@ -58,12 +40,29 @@ const Navbar = () => {
         <Typography.Title level={2} className='logo'>
           <Link to='/'>Cryptoverse</Link>
         </Typography.Title>
+        <Button
+          className='menu-control-container'
+          onClick={() => setActiveMenu(!activeMenu)}
+        >
+          <MenuOutlined />
+        </Button>
       </div>
-      <Menu
-        theme='dark'
-        items={items}
-        onClick={(e) => handleRouteChange(e)}
-      ></Menu>
+      {activeMenu && (
+        <Menu theme='dark'>
+          <Menu.Item icon={<HomeOutlined />}>
+            <Link to='/'>Home</Link>
+          </Menu.Item>
+          <Menu.Item icon={<FundOutlined />}>
+            <Link to='/cryptocurrencies'>Cryptocurrencies</Link>
+          </Menu.Item>
+          <Menu.Item icon={<MoneyCollectOutlined />}>
+            <Link to='/exchanges'>Exchanges</Link>
+          </Menu.Item>
+          <Menu.Item icon={<BulbOutlined />}>
+            <Link to='/news'>News</Link>
+          </Menu.Item>
+        </Menu>
+      )}
     </div>
   );
 };
