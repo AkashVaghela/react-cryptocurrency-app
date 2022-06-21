@@ -21,28 +21,28 @@ const Homepage = () => {
         Global crypto stats
       </Title>
       <Row>
-        <Col span={12}>
+        <Col span={4}>
           <Statistic title='Total Cryptocurrencies' value={globalStats.total} />
         </Col>
-        <Col span={12}>
+        <Col span={4}>
           <Statistic
             title='Total Exchanges'
             value={millify(globalStats.totalExchanges)}
           />
         </Col>
-        <Col span={12}>
+        <Col span={4}>
           <Statistic
             title='Total Market Cap'
             value={millify(globalStats.totalMarketCap)}
           />
         </Col>
-        <Col span={12}>
+        <Col span={4}>
           <Statistic
             title='Total 24h volume'
             value={millify(globalStats.total24hVolume)}
           />
         </Col>
-        <Col span={12}>
+        <Col span={4}>
           <Statistic
             title='Total Market'
             value={millify(globalStats.totalMarkets)}
@@ -51,10 +51,10 @@ const Homepage = () => {
       </Row>
 
       <div className='home-heading-container'>
-        <Title level={2} className='home-title'>
+        <Title level={3} className='home-title'>
           Top 10 Cryptocurrencies in the world
         </Title>
-        <Title level={3} className='show-more'>
+        <Title level={4} className='show-more'>
           <Link to='/cryptocurrencies'>Show more</Link>
         </Title>
       </div>
@@ -62,10 +62,10 @@ const Homepage = () => {
       <Cryptocurrencies simplified />
 
       <div className='home-heading-container'>
-        <Title level={2} className='home-title'>
+        <Title level={3} className='home-title'>
           Latest crypto news
         </Title>
-        <Title level={3} className='show-more'>
+        <Title level={4} className='show-more'>
           <Link to='/news'>Show more</Link>
         </Title>
       </div>

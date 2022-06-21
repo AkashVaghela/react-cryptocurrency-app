@@ -13,6 +13,10 @@
   box-sizing: border-box;
 }
 
+body {
+  font-family: 'Poppins', sans-serif !important;
+}
+
 a:hover {
   color: var(--pink) !important;
 }
@@ -46,8 +50,8 @@ a:hover {
 .logo-container {
   background-color: #001529;
   display: flex;
-  padding: 20px;
   align-items: center;
+  padding: 20px;
   width: 100%;
 }
 .logo {
@@ -128,7 +132,7 @@ a:hover {
     font-size: 1.4rem !important;
   }
   .show-more {
-    font-size: 1.3rem !important;
+    font-size: 1.2rem !important;
   }
 }
 
@@ -350,6 +354,8 @@ a:hover {
   margin-top: 40px;
 }
 .show-more {
+  font-weight: 500 !important;
+  font-size: 1.2rem !important;
   margin-top: 0px !important;
 }
 .exchange-image {
